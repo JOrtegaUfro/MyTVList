@@ -1,10 +1,20 @@
 <template>
-<p></p>
+
 <div class="card" >
   <img src="https://diariorepublica.s3.us-east-1.amazonaws.com/cms/wp-content/uploads/2014/09/brea.jpg" class="card-img-top" alt="Imagen">
   <div class="card-body">
     <h5 class="card-title">Card title</h5>
     <p class="card-text">Some quick example text to build </p>
+
+    <div class="custom-select" >
+  <select class="select-drop">
+    <option value="0">Estado de la serie:</option>
+    <option value="1">Viendo</option>
+    <option value="2">Visto</option>
+    <option value="3">Abandonado</option>
+    </select>
+</div>
+
     <p class="card-text"><small class="text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tv" viewBox="0 0 16 16">
   <path d="M2.5 13.5A.5.5 0 0 1 3 13h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zM13.991 3l.024.001a1.46 1.46 0 0 1 .538.143.757.757 0 0 1 .302.254c.067.1.145.277.145.602v5.991l-.001.024a1.464 1.464 0 0 1-.143.538.758.758 0 0 1-.254.302c-.1.067-.277.145-.602.145H2.009l-.024-.001a1.464 1.464 0 0 1-.538-.143.758.758 0 0 1-.302-.254C1.078 10.502 1 10.325 1 10V4.009l.001-.024a1.46 1.46 0 0 1 .143-.538.758.758 0 0 1 .254-.302C1.498 3.078 1.675 3 2 3h11.991zM14 2H2C0 2 0 4 0 4v6c0 2 2 2 2 2h12c2 0 2-2 2-2V4c0-2-2-2-2-2z"/>
 </svg>70 capitulos</small></p>
@@ -13,28 +23,14 @@
   <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
 </svg>45 min</small></p>
 
-<div class="dropdown">
-  <button class="dropbtn">Dropdown</button>
-  <div class="dropdown-content">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
-  </div>
 
-
-  </div>
 </div>
 
 
 </div>
-
 
 </template>
-    
-<script>
-</script>
-    
-<style>
+<style scoped>
 
 .btn {
   margin-top: 0px;
@@ -46,7 +42,7 @@
   margin-top: 30px; 
   margin-bottom: 30px;
   height: 200px;
-  width: 600px;
+  width: 500px;
   background: rgba(255, 255, 255, 0.2);
 border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -60,6 +56,7 @@ border: 1px solid rgba(255, 255, 255, 0.3);
   width: 200px;
   height: 200px;
   border-radius: 20px;
+
 }
 
 
@@ -71,53 +68,18 @@ border: 1px solid rgba(255, 255, 255, 0.3);
     transform: scale(1.2);
   }
 
-
-
-
-  /* Style The Dropdown Button */
-.dropbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
+.custom-select{
+  width: 200px;
+  display:inline-block;
+  margin-bottom: 10px;
 }
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
+.select-drop{
+  background-color: #ffffff;
+  border-radius: 5px;
+  border:none;
 }
 
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
 
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
 
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-  background-color: #3e8e41;
-}
 </style>

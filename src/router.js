@@ -1,8 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 
-import Home from './components/PaginaPrincipal.vue';
-import Login from './components/LoginVista.vue';
-import SeriesList from './components/SeriesUsuario.vue';
+import Home from './pages/PaginaPrincipal.vue';
+import Login from './pages/LoginVista.vue';
+import SeriesList from './pages/SeriesUsuario.vue';
+import Registro from './pages/RegistroVista.vue';
+import AgregarSerieUsuario from './pages/AgregarSerieUsuario.vue';
 
 const routes = [
   {
@@ -17,6 +19,16 @@ const routes = [
     name: 'Series',
     path: '/Series',
     component: SeriesList,
+  },
+  {
+    name: 'Registro',
+    path: '/Registro',
+    component: Registro,
+  },
+  {
+    name: 'AgregarSerieUsuario',
+    path: '/AgSerieUs',
+    component: AgregarSerieUsuario,
   },
 ];
 

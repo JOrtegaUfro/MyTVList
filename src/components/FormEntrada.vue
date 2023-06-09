@@ -1,6 +1,13 @@
 <template>
+    <div class="container">  
+        <p class="introduccion">Bienvenido a MyTvList donde podras crear tu propia lista de series para organizarte</p>
     <div class="principal">
         <h1>MyTVList</h1>
+        <div class="logo-container">
+
+            <div class="logo"></div>
+
+        </div>
 <button type="button" class="boton btn btn-danger">Entrar</button>
     </div>
 
@@ -15,11 +22,14 @@
   </div>
 </div>
 </form>
+</div>
 </template>
-<script>
 
-</script>
 <style scoped>
+body{
+    background: white;
+}
+
 .container-form{
     position: absolute;
     bottom: 10%;
@@ -36,6 +46,28 @@
 .principal{
     position: absolute;
     left: 10%;
-    top: 25%;
+}
+
+.logo-container{
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+}
+.logo{
+width: 100px;
+height: 100px;
+border-radius: 50%;
+margin-bottom: 10px;
+background: linear-gradient(180deg, rgb(255, 40, 2), rgb(255, 134, 35) );
+}
+
+.introduccion{
+    position:absolute;
+    margin-top: 7%;
+    margin-left: 15%;
+    width: 300px;
+    word-break: normal;
 }
 </style>
