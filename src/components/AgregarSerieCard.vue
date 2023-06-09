@@ -82,7 +82,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .confirmation-overlay {
   position: fixed;
   top: 0;

@@ -5,6 +5,9 @@ import Login from './pages/LoginVista.vue';
 import SeriesList from './pages/SeriesUsuario.vue';
 import Registro from './pages/RegistroVista.vue';
 import AgregarSerieUsuario from './pages/AgregarSerieUsuario.vue';
+import SeriesAdmin from './pages/SeriesAdmin.vue';
+import AgSeriesGen from './pages/AgregarSerieAdmin.vue';
+
 
 const routes = [
   {
@@ -29,6 +32,16 @@ const routes = [
     name: 'AgregarSerieUsuario',
     path: '/AgSerieUs',
     component: AgregarSerieUsuario,
+  },
+  {
+    name: 'SeriesAdmin',
+    path: '/SeriesAdmin',
+    component: SeriesAdmin,
+  },
+  {
+    name: 'AgSeriesGeneral',
+    path: '/AgSeriesGeneral',
+    component: AgSeriesGen,
   },
 ];
 
