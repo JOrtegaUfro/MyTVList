@@ -25,7 +25,7 @@
         </div>
 
         <div class="d-flex align-items-center justify-content-center pb-4">
-            <button type="button" class="btn-personalized">Ingresar</button>
+            <RouterLink to="/Series"><button type="button" class="btn-personalized">Ingresar</button></RouterLink>
         </div>
 
     </form>

@@ -9,7 +9,7 @@
 <CartaSerie></CartaSerie>
 </div>
   </div>
-  <BotonAgregar></BotonAgregar>
+  <RouterLink to="/AgSerieUs"><BotonAgregar></BotonAgregar></RouterLink>
 </div>
 </template>
     

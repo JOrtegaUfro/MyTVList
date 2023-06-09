@@ -33,7 +33,7 @@
         </div>
 
         <div class="d-flex align-items-center justify-content-center pb-4">
-            <button type="button" class="btn-personalized">Ingresar</button>
+            <RouterLink to="/login"><button type="button" class="btn-personalized">Registrar</button></RouterLink>
         </div>
 
     </form>

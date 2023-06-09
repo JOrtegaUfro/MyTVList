@@ -32,7 +32,7 @@
           <p><strong>Capítulos:</strong> {{ episodes }}</p>
           <p><strong>Minutos:</strong> {{ duration }}</p>
           <div class="confirmation-buttons">
-            <button type="button" class="btn-personalized" @click="addSeries">Confirmar</button>
+            <RouterLink to="/Series"><button type="button" class="btn-personalized" @click="addSeries">Confirmar</button></RouterLink>
             <button type="button" class="btn-personalized" @click="cancelAddSeries">Cancelar</button>
           </div>
         </div>

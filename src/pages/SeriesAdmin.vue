@@ -1,7 +1,7 @@
 <template>
-  <NavBar></NavBar>
+  <RouterLink to="/"><NavBar></NavBar></RouterLink>
   <CartaSerie></CartaSerie>
-  <button type="button" class="btn btn-warning">Agregar Serie a lista general</button>
+  <RouterLink to="/AgSeriesGeneral"><button type="button" class="btn btn-warning">Agregar Serie a lista general</button></RouterLink>
 </template>
 <script>
 import NavBar from "../components/NavBarAdmin.vue";

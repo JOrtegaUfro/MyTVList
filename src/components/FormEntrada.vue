@@ -8,7 +8,7 @@
             <div class="logo"></div>
 
         </div>
-<button type="button" class="boton btn btn-danger">Entrar</button>
+<RouterLink to="/login"><button type="button" class="boton btn btn-danger">Entrar</button></RouterLink>
     </div>
 
 <form>
@@ -18,7 +18,7 @@
     <div id="emailHelp" class="form-text">¿Quieres iniciar a utilizar MyTVList ya? Ingresa tu correo</div>
     <label for="exampleInputEmail1" class="form-label">Email</label>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <button type="button" class="btn btn-danger">Enviar</button>
+    <RouterLink to="/Registro"><button type="button" class="btn btn-danger">Enviar</button></RouterLink>
   </div>
 </div>
 </form>
