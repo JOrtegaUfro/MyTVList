@@ -10,11 +10,11 @@
         </div>
         <h1>MyTVList</h1>
         <div class="form-outline mb-4">
-            <input type="email" id="form2Example11" class="form-control" placeholder="Tu correo" />
+            <input v-model="User.email" type="email" id="form2Example11" class="form-control" placeholder="Tu correo" />
             <label class="form-label" for="form2Example11">Correo Electronico</label>
         </div>
         <div class="form-outline mb-4">
-            <input type="email" id="form2Example11" class="form-control" placeholder="Tu usuario" />
+            <input v-model="User.name" type="name" id="form2Example11" class="form-control" placeholder="Tu usuario" />
             <label class="form-label" for="form2Example11">Usuario</label>
         </div>
 
@@ -23,7 +23,7 @@
             <label class="form-label" for="form2Example22" >Contraseña</label>
         </div>
         <div class="form-outline mb-4">
-            <input type="password" id="form2Example22" class="form-control" placeholder="confirma tu contraseña"/>
+            <input v-model="User.password" type="password" id="form2Example22" class="form-control" placeholder="confirma tu contraseña"/>
             <label class="form-label" for="form2Example22" >Confirma tu nueva contraseña contraseña</label>
         </div>
 
@@ -33,7 +33,7 @@
         </div>
 
         <div class="d-flex align-items-center justify-content-center pb-4">
-            <RouterLink to="/login"><button type="button" class="btn-personalized">Registrar</button></RouterLink>
+            <RouterLink to="/login"><button @click="crearUsuario" type="button" class="btn-personalized">Registrar</button></RouterLink>
         </div>
 
     </form>
@@ -41,6 +41,35 @@
 </div>
 
 </template>
+<script>
+import axios from 'axios';
+
+export default {
+    data() {
+        return {
+            User:{
+                name: '',
+                email: '',
+                password: '',
+            }
+        };
+    },
+    //falta agregar un metodo que compruebe que ambas contraseñas son iguales
+    methods: {
+        crearUsuario(){
+            axios.post('http://localhost:3000/auth/register',this.User)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        }
+    }
+}
+
+
+</script>
 <style scoped>
 
 .form-container{
