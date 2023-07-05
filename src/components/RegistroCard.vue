@@ -60,7 +60,7 @@
           <span v-if="!validEmail || !validPasswords" class="error-message" id="errorMessage">Por favor corrige los errores en el formulario.</span>
           <p>¿No tienes una cuenta?</p>
          
-          <a class="text-muted" href="#!">Ingresa aquí</a>
+          <a class="text-muted" href="/login">Ingresa aquí</a>
         </div>
 
         <div class="d-flex align-items-center justify-content-center pb-4">
@@ -97,7 +97,6 @@ export default {
         return;
       }
 
-      console.log(this.User)
 
       axios
         .post('http://localhost:3000/auth/register', this.User)

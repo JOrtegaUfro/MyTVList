@@ -1,74 +1,123 @@
 <template>
-    <div class="container">
+  <div class="container">
     <div class="form-container">
-    <form>
-
+      <form>
         <h1>MyTVList</h1>
         <div class="logo-container">
-            <div class="logo"></div>
+          <div class="logo"></div>
         </div>
         <p>Please login to your account</p>
 
         <div class="form-outline mb-4">
-            <input type="email" id="form2Example11" class="form-control" placeholder="Tu usuario" />
-            <label class="form-label" for="form2Example11">Usuario</label>
+          <input v-model="User.email" type="email" id="form2Example11" class="form-control" placeholder="Tu usuario" />
+          <label class="form-label" for="form2Example11">Usuario</label>
         </div>
 
         <div class="form-outline mb-4">
-            <input type="password" id="form2Example22" class="form-control" placeholder="Tu contraseña"/>
-            <label class="form-label" for="form2Example22" >Contraseña</label> 
+          <input v-model="User.password" type="password" id="form2Example22" class="form-control" placeholder="Tu contraseña" />
+          <label class="form-label" for="form2Example22">Contraseña</label>
+        </div>
+        <div class="error-message" v-if="errorMessage">{{ errorMessage }}</div>
+        
+        <div class="text-center pt-1 mb-4 pb-1">
+          <p>¿No tienes una cuenta?</p>
+          <a class="text-muted" href="/registro">Ingresa aquí</a>
         </div>
 
-        <div class="text-center pt-1 mb-5 pb-1">
-            <p>¿no tienes una cuenta?</p>
-            <a class="text-muted" href="#!">Ingresa aqui</a>
-        </div>
+        
 
         <div class="d-flex align-items-center justify-content-center pb-4">
-            <RouterLink to="/Series"><button type="button" class="btn-personalized">Ingresar</button></RouterLink>
+          <button @click="loginUser" type="button" class="btn-personalized">Ingresar</button>
         </div>
 
-    </form>
-</div>
-</div>
+      </form>
+    </div>
+  </div>
 </template>
-<style scoped>
 
-.form-container{
-    border-radius: 50px;
-    background: linear-gradient(145deg, #ffffff, #e4e3e3);
-    box-shadow:  5px 5px 0px #bebebe;
-    padding: 20px;
-    width:400px;
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      User: {
+        email: '',
+        password: '',
+      },
+      errorMessage: '',
+    };
+  },
+  methods: {
+    loginUser() {
+      axios
+        .post('http://localhost:3000/auth/login', this.User)
+        .then((response) => {
+          if (response.data.user) {
+            this.$router.push('/series');
+          } else {
+            this.errorMessage = 'Login inválido';
+          }
+        })
+        .catch((error) => {
+          if (error.response && error.response.status === 400) {
+            this.errorMessage = error.response.data.message;
+          } else {
+            console.log(error);
+          }
+        });
+    },
+  },
+};
+</script>
+
+<style scoped>
+.form-container {
+  border-radius: 50px;
+  background: linear-gradient(145deg, #ffffff, #e4e3e3);
+  box-shadow: 5px 5px 0px #bebebe;
+  padding: 20px;
+  width: 400px;
 }
-.container{
-    display: flex;
+
+.container {
+  display: flex;
   align-items: center;
   justify-content: center;
 }
-.btn-personalized{
-    background:linear-gradient(180deg, rgb(255, 40, 2), rgb(255, 134, 35) );
-    width: 100px;
-    height: 50px;
-    border: 0px;
-    border-radius: 10px;
-    transition: background 0.5s ease-out;
-    transition: box-shadow 0.3s;
-}
-.btn-personalized:hover{
-    box-shadow: 5px 5px 20px rgb(255, 40, 2);
-}
-.logo-container{
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+.btn-personalized {
+  background: linear-gradient(180deg, rgb(255, 40, 2), rgb(255, 134, 35));
+  width: 100px;
+  height: 50px;
+  border: 0px;
+  border-radius: 10px;
+  transition: background 0.5s ease-out;
+  transition: box-shadow 0.3s;
 }
-.logo{
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background: linear-gradient(180deg, rgb(255, 40, 2), rgb(255, 134, 35) );
+
+.btn-personalized:hover {
+  box-shadow: 5px 5px 20px rgb(255, 40, 2);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, rgb(255, 40, 2), rgb(255, 134, 35));
+}
+
+.error-message {
+  background-color: #ffcccc;
+  color: #ff0000;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 10px;
 }
 </style>
