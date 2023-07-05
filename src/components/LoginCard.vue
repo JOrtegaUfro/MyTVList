@@ -24,10 +24,8 @@
           <a class="text-muted" href="/registro">Ingresa aquí</a>
         </div>
 
-        
-
         <div class="d-flex align-items-center justify-content-center pb-4">
-          <button @click="loginUser" type="button" class="btn-personalized">Ingresar</button>
+          <button @click="onSubmit" type="button" class="btn-personalized">Ingresar</button>
         </div>
 
       </form>
@@ -36,41 +34,39 @@
 </template>
 
 <script>
-import axios from 'axios';
-
+import {login} from "../services/auth.service.js";
+import {setToken} from "../services/helpers.js";
+//
 export default {
   data() {
-    return {
-      User: {
-        email: '',
-        password: '',
-      },
-      errorMessage: '',
-    };
-  },
-  methods: {
-    loginUser() {
-      axios
-        .post('http://localhost:3000/auth/login', this.User)
-        .then((response) => {
-          if (response.data.user) {
-            this.$router.push('/series');
-          } else {
-            this.errorMessage = 'Login inválido';
-          }
-        })
-        .catch((error) => {
-          if (error.response && error.response.status === 400) {
-            this.errorMessage = error.response.data.message;
-          } else {
-            console.log(error);
-          }
-        });
+  return {
+    User: {
+      email: '',
+      password: '',
     },
-  },
-};
-</script>
+    errorMessage : '',
+  };
+},
+methods:{
+    async onSubmit() {
+  try {
+    const response = await login({
+      email: this.User.email,
+      password: this.User.password,
+    });
+    setToken(response.token);
+    this.$router.push('/series');
+  } catch (error) {
+    this.errorMessage = error.message || 'Error';
+  }
+}
+}
+    
 
+
+}
+
+</script>
 <style scoped>
 .form-container {
   border-radius: 50px;
