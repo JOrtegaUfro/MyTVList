@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 
 import Home from './pages/PaginaPrincipal.vue';
 import Login from './pages/LoginVista.vue';
@@ -47,7 +47,7 @@ const routes = [
 
 const router = createRouter({
   routes,
-  history: createWebHashHistory(),
+  history: createWebHistory(),
 });
 
 export default router;

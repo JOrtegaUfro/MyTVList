@@ -12,8 +12,6 @@ export default {
       Login,
       
     },}
-
-
 </script>
 <style scoped>
 body{
