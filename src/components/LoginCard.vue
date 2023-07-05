@@ -10,12 +10,12 @@
         <p>Please login to your account</p>
 
         <div class="form-outline mb-4">
-            <input type="email" id="form2Example11" class="form-control" placeholder="Tu usuario" />
+            <input v-model="User.email" type="email" id="form2Example11" class="form-control" placeholder="Tu usuario" />
             <label class="form-label" for="form2Example11">Usuario</label>
         </div>
 
         <div class="form-outline mb-4">
-            <input type="password" id="form2Example22" class="form-control" placeholder="Tu contraseña"/>
+            <input v-model="User.password" type="password" id="form2Example22" class="form-control" placeholder="Tu contraseña"/>
             <label class="form-label" for="form2Example22" >Contraseña</label> 
         </div>
 
@@ -25,13 +25,45 @@
         </div>
 
         <div class="d-flex align-items-center justify-content-center pb-4">
-            <RouterLink to="/Series"><button type="button" class="btn-personalized">Ingresar</button></RouterLink>
+            <RouterLink to="/Series"><button v-on:click="onSubmit" type="button" class="btn-personalized">Ingresar</button></RouterLink>
         </div>
 
     </form>
 </div>
 </div>
 </template>
+
+<script>
+import {login} from "../services/auth.service.js";
+import {setToken} from "../services/helpers.js";
+//
+export default {
+  data() {
+  return {
+    User: {
+      email: '',
+      password: '',
+    },
+    
+  };
+},
+methods:{
+    async onSubmit() {
+        const response = await login({
+          email: this.User.email,
+          password: this.User.password,
+        });
+        
+    setToken(response.token);
+    console.log(response);
+    }
+}
+    
+
+
+}
+
+</script>
 <style scoped>
 
 .form-container{
