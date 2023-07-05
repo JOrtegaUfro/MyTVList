@@ -53,9 +53,13 @@
           <label class="form-label" for="form2Example33">Confirma tu nueva contraseña</label>
         </div>
 
+
         <div class="text-center pt-1 mb-5 pb-1">
+
+             <span v-if="errorMessage" class="error-message">{{ errorMessage }}</span>
+          <span v-if="!validEmail || !validPasswords" class="error-message" id="errorMessage">Por favor corrige los errores en el formulario.</span>
           <p>¿No tienes una cuenta?</p>
-          <span v-if="!validEmail || !validPasswords" class="error-message">Por favor corrige los errores en el formulario.</span>
+         
           <a class="text-muted" href="#!">Ingresa aquí</a>
         </div>
 
@@ -72,17 +76,18 @@ import axios from 'axios';
 
 export default {
   data() {
-    return {
-      User: {
-        name: '',
-        email: '',
-        password: '',
-      },
-      confirmPassword: '',
-      validEmail: true,
-      validPasswords: true,
-    };
-  },
+  return {
+    User: {
+      name: '',
+      email: '',
+      password: '',
+    },
+    confirmPassword: '',
+    validEmail: true,
+    validPasswords: true,
+    errorMessage: '',
+  };
+},
   methods: {
     crearUsuario() {
       this.validEmail = this.validateEmail();
@@ -100,7 +105,11 @@ export default {
           console.log(response.data);
         })
         .catch((error) => {
-          console.log(error);
+          if (error.response && error.response.status === 400) {
+        this.errorMessage = error.response.data.error;
+      } else {
+        console.log(error);
+      }
         });
     },
     validateEmail() {
@@ -115,10 +124,15 @@ export default {
 </script>
 <style scoped>
 
+#errorMessage{
+    font-size: 18px;
+}
+
 .error-message {
   color: red;
-  font-size: 12px;
+  font-size: 15px;
   display: block;
+
 }
 
 .has-error .form-label {
