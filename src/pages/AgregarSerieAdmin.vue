@@ -4,19 +4,19 @@
       <div class="container-form">
         <div class="form-outline mb-4">
           <label class="form-label" for="titleInput">Título</label>
-          <input type="text" id="titleInput" v-model="title" class="form-control" placeholder="Título de la serie" />
+          <input type="text" id="titleInput" v-model="Serie.nombre" class="form-control" placeholder="Título de la serie" />
         </div>
         <div class="form-outline mb-4">
           <label class="form-label" for="coverUrlInput">URL de la Portada</label>
-          <input type="text" id="coverUrlInput" v-model="coverUrl" class="form-control" placeholder="URL de la portada" />
+          <input type="text" id="coverUrlInput" v-model="Serie.portada" class="form-control" placeholder="URL de la portada" />
         </div>
         <div class="form-outline mb-4">
           <label class="form-label" for="episodesInput">Capítulos</label>
-          <input type="number" id="episodesInput" v-model="episodes" class="form-control" placeholder="Número de capítulos" />
+          <input type="number" id="episodesInput" v-model="Serie.capitulos" class="form-control" placeholder="Número de capítulos" />
         </div>
         <div class="form-outline mb-4">
           <label class="form-label" for="durationInput">Minutos</label>
-          <input type="number" id="durationInput" v-model="duration" class="form-control" placeholder="Minutos promedio de los capítulos" />
+          <input type="number" id="durationInput" v-model="Serie.minutos" class="form-control" placeholder="Minutos promedio de los capítulos" />
         </div>
         <!-- Botón de agregar -->
         <div class="d-flex align-items-center justify-content-center pb-4">
@@ -41,13 +41,19 @@
   </template>
   
   <script>
+import {crearSerieAdmin} from "../services/auth.service.js";
+ 
   export default {
     data() {
       return {
-        title: '',
-        coverUrl: '',
-        episodes: '',
-        duration: '',
+        Serie:{
+          nombre:"",
+          estado:"",
+          portada:"",
+          capitulos:"",
+          minutos:"",
+        },
+
         showConfirmation: false
       };
     },
@@ -55,28 +61,29 @@
       confirmAddSeries() {
         this.showConfirmation = true;
       },
-      addSeries() {
+      async addSeries() {
         // Aquí puedes agregar la lógica para guardar la serie en tu aplicación o enviarla al servidor
-        console.log('Serie agregada:', {
-          title: this.title,
-          coverUrl: this.coverUrl,
-          episodes: this.episodes,
-          duration: this.duration
+        
+        await crearSerieAdmin({
+          portada:this.Serie.portada,
+          nombre:this.Serie.nombre,
+          estado:"Viendo",
+          capitulos:this.Serie.capitulos,
+          minutos:this.Serie.minutos,
         });
-  
-        // Reiniciar los campos de entrada y ocultar la pantalla de confirmación
-        this.title = '';
-        this.coverUrl = '';
-        this.episodes = '';
-        this.duration = '';
-        this.showConfirmation = false;
+        
+        console.log('Serie agregada:', {
+          portada:this.Serie.portada,
+          nombre:this.Serie.nombre,
+          capitulos:this.Serie.capitulos,
+          minutos:this.Serie.minutos,
+        });
+        this.$router.push({
+        name: 'SeriesAdmin'
+      });
       },
       cancelAddSeries() {
         // Reiniciar los campos de entrada y ocultar la pantalla de confirmación
-        this.title = '';
-        this.coverUrl = '';
-        this.episodes = '';
-        this.duration = '';
         this.showConfirmation = false;
       }
     }

@@ -31,4 +31,25 @@ export function login({ email, password }) {
     });
 }
 
+export function seriesAdmin() {
+	return axiosInstance
+		.get(`${BASE_URL}/series/1`,)
+		.then((response) => response.data.series)
+		.catch((error) => ({
+			error: true,
+			name: error.response.data?.error?.name || "Error",
+			message: error.response.data?.error?.msg || "Error",
+		}));
+}
+export function crearSerieAdmin({portada, nombre, estado,capitulos,minutos}) {
+	return axiosInstance
+		.post(`${BASE_URL}/series/1`,{ portada, nombre, estado,capitulos,minutos })
+		.then((response) => response.data)
+		.catch((error) => ({
+			error: true,
+			name: error.response.data?.error?.name || "Error",
+			message: error.response.data?.error?.msg || "Error",
+		}));
+}
+
 export { axiosInstance };
