@@ -55,9 +55,23 @@ methods:{
       password: this.User.password,
     });
     setToken(response.token);
-    this.$router.push('/series');
+        console.log(response);
+    if(response.user.roles ==="admin"){
+        this.$router.push({
+        name: 'SeriesAdmin'
+      });
+    }
+
+    if(response.user.roles ==="normal"){
+        this.$router.push({
+        name: 'Series'
+      });
+    }
   } catch (error) {
     this.errorMessage = error.message || 'Error';
+    this.$router.push({
+        name: 'Login'
+      });
   }
 }
 }
