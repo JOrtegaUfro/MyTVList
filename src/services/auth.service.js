@@ -52,4 +52,25 @@ export function crearSerieAdmin({portada, nombre, estado,capitulos,minutos}) {
 		}));
 }
 
+export function seriesUsuario() {
+	return axiosInstance
+		.get(`${BASE_URL}/users/1/series`,)
+		.then((response) => response.data.series)
+		.catch((error) => ({
+			error: true,
+			name: error.response.data?.error?.name || "Error",
+			message: error.response.data?.error?.msg || "Error",
+		}));
+}
+export function crearSerieUsuario({portada, nombre, estado,capitulos,minutos}) {
+	return axiosInstance
+		.post(`${BASE_URL}/users/23/series`,{ portada, nombre, estado,capitulos,minutos })
+		.then((response) => response.data)
+		.catch((error) => ({
+			error: true,
+			name: error.response.data?.error?.name || "Error",
+			message: error.response.data?.error?.msg || "Error",
+		}));
+}
+
 export { axiosInstance };

@@ -3,10 +3,9 @@
   <NavBar></NavBar>
   <div class="container">
     <div class="card-container">
-<CartaSerie></CartaSerie>
-<CartaSerie></CartaSerie>
-<CartaSerie></CartaSerie>
-<CartaSerie></CartaSerie>
+      <div v-for="serie in series" :key="serie._id">
+  <CartaSerie :modelo="serie"></CartaSerie>
+</div>
 </div>
   </div>
   <RouterLink to="/AgSerieUs"><BotonAgregar></BotonAgregar></RouterLink>
@@ -18,11 +17,27 @@
 import CartaSerie from "../components/CartaSerie.vue";
 import BotonAgregar from "../components/BotonAgregar.vue";
 import NavBar from "../components/NavBarUsuario.vue";
+import {seriesUsuario} from "../services/auth.service.js";
+
 export default {
   components:{
       CartaSerie,
       BotonAgregar,NavBar,
-    },}
+    },data() {
+    return {
+      series:[], 
+  
+  }
+},
+    async mounted(){
+      this.busqueda= localStorage.getItem("busqueda");
+      this.series= await seriesUsuario();
+      if(this.series.error){
+        this.series=[];
+      }
+    console.log(this.series);
+    }
+  }
 </script>
 
 <style scoped>
