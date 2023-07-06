@@ -73,4 +73,15 @@ export function crearSerieUsuario({portada, nombre, estado,capitulos,minutos}) {
 		}));
 }
 
+export function deleteSerie({idSerie}) {
+	return axiosInstance
+		.delete(`${BASE_URL}/series/`+idSerie)
+		.then((response) => response.data)
+		.catch((error) => ({
+			error: true,
+			name: error.response.data?.error?.name || "Error",
+			message: error.response.data?.error?.msg || "Error",
+		}));
+}
+
 export { axiosInstance };
