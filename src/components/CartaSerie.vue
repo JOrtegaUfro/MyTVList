@@ -6,12 +6,12 @@
     <h5 class="card-title">{{ modelo.nombre }}</h5>
     <p class="card-text"> {{ modelo._id }} </p>
 
-    <div class="custom-select" >
-  <select class="select-drop">
+    <div class="custom-select">
+  <select class="select-drop" v-model="estado" @change="updateEstado">
     <option value="0">Estado de la serie:</option>
-    <option value="1">Viendo</option>
-    <option value="2">Visto</option>
-    <option value="3">Abandonado</option>
+    <option value="Viendo">Viendo</option>
+    <option value="Visto">Visto</option>
+    <option value="Abandonado">Abandonado</option>
     </select>
 </div>
 
@@ -31,6 +31,7 @@
 
 </template>
 <script>
+import {actualizarEstadoSerie} from "../services/auth.service.js";
 
 export default {
   props: {
@@ -41,14 +42,34 @@ export default {
     },
     data() {
     return {
-      portada:String, 
+      portada:String,
+      estado:String,
+      id:String,
   }
 },
 async mounted(){
     this.portada = this.modelo.portada;
+    this.estado=this.modelo.estado;
+    this.id = this.modelo._id;
+    },
+    methods:{
+      updateEstado(){
+        let estadoText = ''; 
+        if(this.estado==='Viendo'){
+          estadoText= 'Viendo';
+        }
+        if(this.estado==='Visto'){
+          estadoText= 'Visto';
+        }
+        if(this.estado==='Abandonado'){
+          estadoText= 'Abandonado';
+        }
+      actualizarEstadoSerie({idSerie:this.id,estado:estadoText});
+      }
     }
   
-  }</script>
+  }
+  </script>
 <style scoped>
 
 .btn {

@@ -84,4 +84,15 @@ export function deleteSerie({idSerie}) {
 		}));
 }
 
+export function actualizarEstadoSerie({idSerie,estado}) {
+	return axiosInstance
+		.put(`${BASE_URL}/users/1/series/`+idSerie,{estado})
+		.then((response) => response.data)
+		.catch((error) => ({
+			error: true,
+			name: error.response.data?.error?.name || "Error",
+			message: error.response.data?.error?.msg || "Error",
+		}));
+}
+
 export { axiosInstance };

@@ -1,7 +1,9 @@
 <template>
   <RouterLink to="/"><NavBar></NavBar></RouterLink>
+  <div class="big-container">
   <div v-for="serie in series" :key="serie._id">
   <CartaSerie :modelo="serie"></CartaSerie>
+</div>
 </div>
   <RouterLink to="/AgSeriesGeneral"><button type="button" class="btn btn-warning">Agregar Serie a lista general</button></RouterLink>
 </template>
@@ -28,5 +30,9 @@ export default {
   }
 </script>
 <style scoped>
-
+.big-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 20px;
+}
 </style>
