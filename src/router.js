@@ -7,7 +7,8 @@ import Registro from './pages/RegistroVista.vue';
 import AgregarSerieUsuario from './pages/AgregarSerieUsuario.vue';
 import SeriesAdmin from './pages/SeriesAdmin.vue';
 import AgSeriesGen from './pages/AgregarSerieAdmin.vue';
-
+import TipoAgregar from './pages/TipoAgregar.vue';
+import SeriesPublica from './pages/SeriesPublica.vue';
 
 const routes = [
   {
@@ -42,6 +43,16 @@ const routes = [
     name: 'AgSeriesGeneral',
     path: '/AgSeriesGeneral',
     component: AgSeriesGen,
+  },
+  {
+    name: 'TipoAgregar',
+    path: '/TipoAgregar',
+    component: TipoAgregar,
+  },
+  {
+    name: 'SeriesPublica',
+    path: '/SeriesPublica',
+    component: SeriesPublica,
   },
 ];
 

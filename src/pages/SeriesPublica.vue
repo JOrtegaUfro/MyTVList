@@ -6,12 +6,11 @@
       <CartaSerie :modelo="serie"></CartaSerie>
     </div>
   </div>
-  <RouterLink to="/AgSeriesGeneral"><button type="button" class="btn btn-warning">Agregar Serie a lista general</button></RouterLink>
 </template>
 
 <script>
 import NavBar from "../components/NavBarAdmin.vue";
-import CartaSerie from "../components/EliminarSerie.vue";
+import CartaSerie from "../components/AgregarSeriePub.vue";
 import { seriesAdmin } from "../services/auth.service.js";
 
 export default {
